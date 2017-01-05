@@ -16,6 +16,13 @@ public class Node implements Comparable<Node> {
         this.right = right;
     }
 
+    public Node(int frequency, Node left, Node right) {
+        this.frequency = frequency;
+        this.left = left;
+        this.right = right;
+
+    }
+
     @Override
     public int compareTo(Node o) {
         return this.frequency - o.frequency;
