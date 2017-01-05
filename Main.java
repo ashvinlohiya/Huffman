@@ -8,51 +8,30 @@ import java.util.PriorityQueue;
 
 
 public class Main {
-    public static final int sizeOfExtendedASCII = 256;
-
+        public static final int sizeOfExtendedASCII = 256;
 
     public static void main(String[] args) throws IOException {
-        //File file = new File("C:/Users/FLEX-2/IdeaProjects/Huffman/src/Hello.txt");
-        File file = new File("C:/Users/FLEX-2/Desktop/CSS/CSS-Images/bbc_pollution.jpg");
+
+
+        String filename = "C:\\Users\\FLEX-2\\IdeaProjects\\Huffman\\src\\Hello.txt";
+        char[] freq = new char[sizeOfExtendedASCII];
+        File file = new File(filename);
         byte[] bytes = new byte[(int) file.length()];
         DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(new FileInputStream(file)));
         dataInputStream.readFully(bytes);
         dataInputStream.close();
-        //System.out.println(Arrays.toString(bytes));
-        //System.out.println("BR");
-        int[] temp = new int[bytes.length];
-        for (int i = 0; i < bytes.length; i++) {
-            temp[i] = (bytes[i] & 0xff);
-        }
-        //System.out.println(Arrays.toString(temp));
 
+        Compression hf = new Compression();
 
-        int[] frequency = new int[sizeOfExtendedASCII];
-        for (int i = 0; i < temp.length; i++) {
-            frequency[temp[i]]++;
-        }
+        //Node root = hf.hufTrie(hf.frequency("C:/Users/admin/Desktop/SigmaPi.jpg"));
+        Node root = hf.hufTrie(hf.frequency(filename,bytes));
+        String[] codeFinal = new String[sizeOfExtendedASCII];
+        hf.codeFinal(codeFinal, root, "");
 
-        PriorityQueue<Node> pq = new PriorityQueue<Node>();
-
-        for (int i = 0; i < 256; i++) {
-            Node nod = new Node((char)i, frequency[i], null, null);
-            pq.add(nod);
-        }
-
-        for (int i = 0; i < 256; i++) {
-            Node nod = pq.remove();
-            System.out.println(nod.frequency);
-
-
+        for (int i = 0; i < sizeOfExtendedASCII; i++) {
+            System.out.println(i + " " + codeFinal[i]);
         }
 
     }
-
-
-
-
-
-
-
 
 }
