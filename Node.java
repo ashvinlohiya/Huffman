@@ -1,7 +1,7 @@
 /**
  * Created by ashvinlohiya on 04-01-2017.
  */
-public class Node {
+public class Node implements Comparable<Node> {
 
     char character;
     int frequency;
@@ -16,6 +16,10 @@ public class Node {
         this.right = right;
     }
 
+    @Override
+    public int compareTo(Node o) {
+        return this.frequency - o.frequency;
+    }
 }
 
 
