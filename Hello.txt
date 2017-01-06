@@ -1,1 +1,1 @@
-abcdefghijklmnopqrstuvwxyz
+Huffman Encoding Successful. Congratulations!
